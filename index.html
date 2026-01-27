@@ -17,49 +17,57 @@ html, body {
 }
 
 body {
-  background-image: url("bg.png.jpg"); /* ĐỔI TÊN ẢNH Ở ĐÂY */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: url("bg.png.jpg") no-repeat center center / cover;
   font-family: Arial, sans-serif;
 }
 
-/* Nút Facebook */
-#fb-btn {
+/* ===== NÚT CHUNG ===== */
+.social-btn {
   position: fixed;
   bottom: 30px;
-  left: 30px;
-  background: #1877f2;
+  padding: 14px 22px;
+  border-radius: 30px;
   color: white;
-  padding: 12px 18px;
-  border-radius: 25px;
-  cursor: pointer;
   font-weight: bold;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
-  transition: transform 0.2s, box-shadow 0.2s;
+  gap: 10px;
+  transition: all 0.25s ease;
 }
 
-#fb-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+.social-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
 }
 
-/* Popup */
-#fb-popup {
-  position: fixed;
-  bottom: 90px;
+/* Facebook */
+#fb-btn {
   left: 30px;
-  width: 260px;
+  background: #1877f2;
+}
+
+/* TikTok */
+#tt-btn {
+  left: 180px;
+  background: #000;
+}
+
+/* ===== POPUP ===== */
+.popup {
+  position: fixed;
+  bottom: 95px;
+  width: 280px;
   background: white;
-  border-radius: 10px;
-  padding: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
   display: none;
 }
 
-/* Header popup */
+#fb-popup { left: 30px; }
+#tt-popup { left: 180px; }
+
 .popup-header {
   display: flex;
   justify-content: space-between;
@@ -68,49 +76,86 @@ body {
   margin-bottom: 10px;
 }
 
-/* Nút X */
 .close-btn {
   cursor: pointer;
   font-size: 18px;
 }
 
-/* Ô nhập link */
-#fb-popup input {
-  width: 100%;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+/* Link hiển thị */
+.popup a {
+  display: block;
+  padding: 10px;
+  background: #f2f2f2;
+  border-radius: 6px;
+  text-decoration: none;
+  word-break: break-all;
+  font-weight: bold;
 }
+
+#fb-popup a { color: #1877f2; }
+#tt-popup a { color: #000; }
 </style>
 </head>
 
 <body>
 
-<!-- Nút Facebook -->
-<div id="fb-btn">
+<!-- ===== FACEBOOK ===== -->
+<div id="fb-btn" class="social-btn">
   <span>📘</span>
   <span>Facebook</span>
 </div>
 
-<!-- Popup -->
-<div id="fb-popup">
+<div id="fb-popup" class="popup">
   <div class="popup-header">
-    <span>Facebook link</span>
-    <span class="close-btn" onclick="closePopup()">✕</span>
+    <span>Fanpage Facebook</span>
+    <span class="close-btn" onclick="closePopup('fb')">✕</span>
   </div>
-  <input type="text" placeholder="Dán link Facebook vào đây">
+
+  <!-- 🔴 CHỈ MÀY SỬA LINK Ở ĐÂY -->
+  <a href="https://facebook.com/tenfanpage"
+     target="_blank">
+     https://facebook.com/tenfanpage
+  </a>
+</div>
+
+<!-- ===== TIKTOK ===== -->
+<div id="tt-btn" class="social-btn">
+  <span>🎵</span>
+  <span>TikTok</span>
+</div>
+
+<div id="tt-popup" class="popup">
+  <div class="popup-header">
+    <span>TikTok CLB</span>
+    <span class="close-btn" onclick="closePopup('tt')">✕</span>
+  </div>
+
+  <!-- 🔴 CHỈ MÀY SỬA LINK Ở ĐÂY -->
+  <a href="https://tiktok.com/@tentiktok"
+     target="_blank">
+     https://tiktok.com/@tentiktok
+  </a>
 </div>
 
 <script>
 const fbBtn = document.getElementById("fb-btn");
-const popup = document.getElementById("fb-popup");
+const ttBtn = document.getElementById("tt-btn");
+const fbPopup = document.getElementById("fb-popup");
+const ttPopup = document.getElementById("tt-popup");
 
 fbBtn.onclick = () => {
-  popup.style.display = "block";
+  fbPopup.style.display = "block";
+  ttPopup.style.display = "none";
 };
 
-function closePopup() {
-  popup.style.display = "none";
+ttBtn.onclick = () => {
+  ttPopup.style.display = "block";
+  fbPopup.style.display = "none";
+};
+
+function closePopup(type) {
+  if (type === "fb") fbPopup.style.display = "none";
+  if (type === "tt") ttPopup.style.display = "none";
 }
 </script>
 
