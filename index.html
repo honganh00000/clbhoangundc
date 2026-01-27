@@ -2,7 +2,9 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Test</title>
+<title>CLB Hoa Ngữ</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 html, body {
@@ -12,53 +14,20 @@ html, body {
 }
 
 body {
-  background: #eecfff;
+  position: relative;
+  background: url("bg.png") no-repeat center center / cover;
+  font-family: Arial, sans-serif;
 }
 
-/* Thanh FB */
+/* NÚT FACEBOOK */
 .fb-bar {
   position: fixed;
-  bottom: 40px;
-  left: 40px;
+  bottom: 30px;
+  left: 30px;
   background: #1877f2;
   color: white;
-  padding: 14px 20px;
+  padding: 14px 22px;
   border-radius: 30px;
   cursor: pointer;
-  font-size: 16px;
-}
-
-/* Popup */
-.fb-popup {
-  position: fixed;
-  bottom: 100px;
-  left: 40px;
-  width: 260px;
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  display: none;
-}
-
-.fb-popup.active {
-  display: block;
-}
-
-.close {
-  float: right;
-  cursor: pointer;
-}
-</style>
-</head>
-
-<body>
-
-<div class="fb-bar" onclick="toggle()">
-  FACEBOOK
-</div>
-
-<div class="fb-popup" id="popup">
-  <span class="close" onclick="toggle()">X</span>
-  <p>Link Facebook:</p>
-  <input type="text" style="width:100%">
-</div
+  display: flex;
+  align
