@@ -1,49 +1,64 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>CLB Hoa Ngữ</title>
+<meta charset="UTF-8">
+<title>Test</title>
 
-  <!-- Font Awesome icon -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+body {
+  background: #eecfff;
+}
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-    }
+/* Thanh FB */
+.fb-bar {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  background: #1877f2;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+}
 
-    body {
-      background: url("bg.png") no-repeat center center / cover;
-    }
+/* Popup */
+.fb-popup {
+  position: fixed;
+  bottom: 100px;
+  left: 40px;
+  width: 260px;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  display: none;
+}
 
-    /* === Thanh Facebook === */
-    .fb-bar {
-      position: fixed;
-      left: 20px;
-      bottom: 40px;
-      background: #1877f2;
-      color: white;
-      padding: 12px 16px;
-      border-radius: 30px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+.fb-popup.active {
+  display: block;
+}
 
-    .fb-bar:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
+.close {
+  float: right;
+  cursor: pointer;
+}
+</style>
+</head>
 
-    /* === Khung nhập link === */
-    .fb-popup
+<body>
+
+<div class="fb-bar" onclick="toggle()">
+  FACEBOOK
+</div>
+
+<div class="fb-popup" id="popup">
+  <span class="close" onclick="toggle()">X</span>
+  <p>Link Facebook:</p>
+  <input type="text" style="width:100%">
+</div
