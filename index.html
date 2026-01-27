@@ -5,36 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CLB Hoa Ngữ</title>
 
+  <!-- Icon Facebook -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
   <style>
-    /* Reset cơ bản */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
+      font-family: Arial, sans-serif;
     }
 
     body {
-      /* Màu nền phụ (tránh viền trắng) */
       background-color: #e6c8ee;
-
-      /* Ảnh nền */
-      background-image: url("bg.png.jpg");
-      background-repeat: no-repeat;
-      background-position: center center;
-
-      /* QUAN TRỌNG: không phóng ảnh */
-      background-size: contain;
     }
-  </style>
-</head>
 
-<body>
-  <!-- Hiện tại để trống đúng yêu cầu -->
-</body>
-</html>
+    /* Banner */
+    .banner {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: url("bg.png.jpg") no-repeat center / cover;
+    }
 
+    /* Thanh Facebook */
+    .fb-bar {
+      position: fixed;
+      top: 40%;
+      right: -120px;
+      width: 160px;
+      height: 45px;
+      background: #1877f2;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 15px;
+      border-radius: 8px 0 0 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    .fb-bar:hover {
+      right: 0;
+    }
+
+    .fb-bar i {
+      font-size: 22px;
+    }
+
+    /* Popup */
+    .fb-popup {
+      position: fixed;
+      top: 50%;
+      right:
