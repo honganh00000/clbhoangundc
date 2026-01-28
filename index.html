@@ -6,10 +6,11 @@
 <title>CLB Hoa Ngữ</title>
 
 <style>
+/* RESET */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html, body {
@@ -17,89 +18,23 @@ html, body {
   height: 100%;
 }
 
+/* NỀN */
 body {
-  background: url("bg.png.jpg") no-repeat center center / cover;
+  background: url("bg.png.jpg") center center / cover no-repeat;
   font-family: Arial, sans-serif;
 }
 
-/* ===== KHỐI NÚT (ưu tiên mobile) ===== */
-.social-wrapper {
+/* ===== NÚT MXH ===== */
+.social-bar {
   position: fixed;
-  bottom: 18px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 16px;
-  z-index: 10;
+  gap: 14px;
+  z-index: 9999; /* QUAN TRỌNG: KHÔNG BAO GIỜ MẤT */
 }
 
 .social-btn {
   display: flex;
-  align-items: center;
-  gap: 10px;
-
-  padding: 16px 22px;
-  border-radius: 999px;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-
-  cursor: pointer;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
-  transition: transform 0.2s;
-}
-
-.social-btn:active {
-  transform: scale(0.95);
-}
-
-.social-btn img {
-  width: 26px;
-  height: 26px;
-}
-
-/* Facebook */
-#fb-btn {
-  background: #1877f2;
-}
-
-/* TikTok */
-#tt-btn {
-  background: #000;
-}
-
-/* ===== POPUP ===== */
-.popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 20;
-}
-
-.popup-box {
-  width: 90%;
-  max-width: 320px;
-  background: white;
-  border-radius: 14px;
-  padding: 16px;
-}
-
-.popup-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
-
-.close-btn {
-  font-size: 20px;
-  cursor: pointer;
-}
-
-/* Link hiển thị (chỉ xem + bấm) */
-.popup a
+  align-items: center
