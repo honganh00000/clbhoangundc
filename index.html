@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoa Ngữ NDC</title>
+    <title>CLB Hoa Ngữ NĐC</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,7 +14,6 @@
         }
 
         body {
-            /* Sử dụng ảnh nền của ông */
             background: url('bg.png.jpg') no-repeat center center fixed;
             background-size: cover;
             height: 100vh;
@@ -24,108 +23,109 @@
             overflow: hidden;
         }
 
+        /* Lớp phủ để ảnh nền trông dịu hơn, nổi bật nội dung */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: -1;
+        }
+
         .container {
-            width: 90%;
-            max-width: 400px;
+            width: 85%;
+            max-width: 380px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.15); /* Hiệu ứng kính mờ */
+            background: rgba(255, 255, 255, 0.12);
             padding: 40px 20px;
             border-radius: 30px;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo-hoa-dao {
+            font-size: 65px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 12px #ffb7c5);
+            display: inline-block;
         }
 
         h1 { 
-            margin-bottom: 25px; 
-            font-size: 1.8rem; 
+            margin-bottom: 30px; 
+            font-size: 1.6rem; 
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        /* Style chung cho nút */
         .btn {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
-            padding: 16px;
-            margin: 12px 0;
+            padding: 15px;
+            margin: 14px 0;
             border: none;
-            border-radius: 15px;
-            font-size: 17px;
+            border-radius: 18px;
+            font-size: 16px;
             font-weight: 600;
             text-decoration: none;
             color: white;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        .btn:active { transform: scale(0.97); }
-        .btn i { margin-right: 12px; font-size: 24px; }
+        .btn:active { transform: scale(0.95); }
+        .btn i { margin-right: 12px; font-size: 22px; }
 
-        /* Màu sắc chuẩn các nền tảng */
         .btn-facebook { background-color: #1877F2; }
-        .btn-tiktok { background-color: #000000; border: 1px solid rgba(255,255,255,0.2); }
+        .btn-tiktok { background-color: #010101; border: 1px solid rgba(255,255,255,0.3); }
         .btn-instagram { 
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
         }
 
-        /* Modal (Khung sửa link) */
+        /* Modal & Admin UI */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0,0,0,0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
         }
 
         .modal-content {
-            background: #ffffff;
+            background: #fff;
             color: #333;
-            padding: 30px;
+            padding: 25px;
             border-radius: 20px;
-            width: 85%;
-            max-width: 350px;
+            width: 80%;
+            max-width: 320px;
             position: relative;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .close-btn {
             position: absolute;
-            top: 15px; right: 20px;
-            font-size: 28px;
+            top: 10px; right: 15px;
+            font-size: 25px;
             cursor: pointer;
-            color: #aaa;
-            line-height: 1;
+            color: #999;
         }
-
-        .close-btn:hover { color: #000; }
-
-        h3 { margin-bottom: 10px; font-size: 1.2rem; color: #444; }
 
         input {
             width: 100%;
             padding: 12px;
             margin: 15px 0;
-            border: 2px solid #eee;
+            border: 1px solid #ddd;
             border-radius: 10px;
-            outline: none;
-            transition: border-color 0.3s;
+            font-size: 14px;
         }
 
-        input:focus { border-color: #1877F2; }
-
         .save-btn {
-            background: #00c853;
+            background: #28a745;
             color: white;
             border: none;
             padding: 12px;
@@ -133,29 +133,28 @@
             width: 100%;
             font-weight: bold;
             cursor: pointer;
-            font-size: 16px;
         }
 
-        /* Nút ẩn kích hoạt chế độ sửa (để ở góc) */
         #admin-trigger {
             position: fixed;
             bottom: 15px;
             right: 15px;
-            width: 30px;
-            height: 30px;
-            opacity: 0.05; /* Gần như vô hình với người lạ */
+            width: 40px;
+            height: 40px;
+            opacity: 0.05; /* Cực mờ để giấu nút cài đặt */
             color: white;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 10;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div style="font-size: 60px; margin-bottom: 10px; filter: drop-shadow(0 0 10px #ffb7c5);">🌸</div>
+        <div class="logo-hoa-dao">🌸</div>
         <h1>CLB Hoa Ngữ NĐC</h1>
         
         <a href="#" class="btn btn-facebook" onclick="handleRedirect('facebook')">
@@ -174,9 +173,8 @@
     <div id="editModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h3 id="platformTitle">Cập nhật Link</h3>
-            <p style="font-size: 12px; color: #666;">Dán URL mới vào ô bên dưới:</p>
-            <input type="text" id="linkInput" placeholder="https://...">
+            <h3 id="platformTitle" style="margin-bottom: 5px;">Cập nhật Link</h3>
+            <input type="text" id="linkInput" placeholder="Dán link vào đây...">
             <button class="save-btn" onclick="saveLink()">LƯU LẠI</button>
         </div>
     </div>
@@ -188,35 +186,31 @@
     <script>
         let currentPlatform = '';
         
-        // Giá trị mặc định nếu chưa dán link
+        // Link GỐC của ông - Sửa ở đây là điện thoại tự nhận luôn
         const defaultLinks = {
             facebook: 'https://www.facebook.com/profile.php?id=61581656879720',
             tiktok: 'https://www.tiktok.com/@clb.hoa.ng.nc?_r=1&_t=ZS-93R1643KPm1',
             instagram: 'https://www.instagram.com/clb_hoangu_ndc?igsh=bng0MHg0ZmM1eGdo'
         };
 
-        // 1. Hàm chuyển hướng (Dành cho khách)
         function handleRedirect(platform) {
             const savedLink = localStorage.getItem(platform) || defaultLinks[platform];
             window.location.href = savedLink;
         }
 
-        // 2. Hàm kiểm tra quyền Admin (Dành cho ông)
         function askAdmin() {
             const pass = prompt("mời con chó Hồng Anh nhập mã admin để fix link:");
-            if (pass === "nhibingu") { // ÔNG ĐỔI MẬT KHẨU Ở ĐÂY NHÉ
+            if (pass === "nhibingu") {
                 const choice = prompt("mày muốn sửa link nào? (sủa: fb, tt, hoặc ig)");
-                
                 if (choice === 'fb') showModal('facebook');
                 else if (choice === 'tt') showModal('tiktok');
                 else if (choice === 'ig') showModal('instagram');
-                else if (choice !== null) alert("Gõ không đúng rồi, gõ lại đi ông!");
+                else if (choice !== null) alert("Gõ cho đúng vào!");
             } else if (pass !== null) {
                 alert("Sai mẹ m mật khẩu rồi thằng ngu!");
             }
         }
 
-        // 3. Hiện khung dán link
         function showModal(platform) {
             currentPlatform = platform;
             document.getElementById('platformTitle').innerText = "Sửa link " + platform.toUpperCase();
@@ -224,32 +218,22 @@
             document.getElementById('editModal').style.display = 'flex';
         }
 
-        // 4. Đóng khung
         function closeModal() {
             document.getElementById('editModal').style.display = 'none';
         }
 
-        // 5. Lưu link vào bộ nhớ máy
         function saveLink() {
             const newLink = document.getElementById('linkInput').value;
             if (newLink.trim() !== "") {
-                localStorage.setItem(currentPlatform, newLink);
-                alert("Đã cập nhật link thành công!");
+                localStorage.setItem(currentPlatform, newLink.trim());
+                alert("Đã lưu tạm thời trên trình duyệt này!");
                 closeModal();
-            } else {
-                alert("Đừng để trống link ông ơi!");
             }
         }
 
-        // Đóng modal khi bấm ra ngoài vùng trắng
         window.onclick = function(event) {
-            if (event.target == document.getElementById('editModal')) {
-                closeModal();
-            }
+            if (event.target == document.getElementById('editModal')) closeModal();
         }
     </script>
 </body>
 </html>
-
-
-
