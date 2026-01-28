@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CLB Hoa Ngữ</title>
 
 <style>
@@ -12,163 +12,87 @@
   box-sizing: border-box;
 }
 
-/* QUAN TRỌNG */
 body {
   min-height: 100vh;
-  background-image: url("bg.png.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow-x: hidden;
+  background: url("bg.png.jpg") no-repeat center / cover;
+  font-family: Arial, sans-serif;
 }
 
-/* ===== NÚT MXH (FIX CỨNG) ===== */
-.social-bar {
-  position: fixed;
+/* khung nút */
+.links {
+  position: absolute;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  bottom: calc(16px + env(safe-area-inset-bottom));
-
   display: flex;
-  gap: 12px;
-
-  z-index: 999999;
-  pointer-events: auto;
+  gap: 18px;
 }
 
-.social-btn {
+/* nút chung */
+.link-btn {
   display: flex;
   align-items: center;
-  gap: 8px;
-
-  padding: 14px 18px;
+  gap: 10px;
+  padding: 16px 24px;
   border-radius: 999px;
+  font-size: 16px;
   font-weight: bold;
-  font-size: 14px;
   color: #fff;
-
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-}
-
-.social-btn img {
-  width: 22px;
-  height: 22px;
-}
-
-#fb-btn { background: #1877f2; }
-#tt-btn { background: #000; }
-
-.social-btn:active {
-  transform: scale(0.95);
-}
-
-/* ===== POPUP ===== */
-.popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000000;
-}
-
-.popup-box {
-  width: 85%;
-  max-width: 320px;
-  background: #fff;
-  border-radius: 14px;
-  padding: 16px;
-}
-
-.popup-header {
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
-
-.close {
-  font-size: 20px;
-}
-
-.popup a {
-  display: block;
-  padding: 14px;
-  background: #f2f2f2;
-  border-radius: 8px;
-  text-align: center;
-  font-weight: bold;
   text-decoration: none;
-  word-break: break-all;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+  transition: 
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
 }
 
-.fb-link { color: #1877f2; }
-.tt-link { color: #000; }
+/* icon */
+.link-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Facebook */
+.fb {
+  background: linear-gradient(135deg, #1877f2, #0f5ad6);
+}
+
+/* TikTok */
+.tt {
+  background: linear-gradient(135deg, #000000, #1a1a1a);
+}
+
+/* hiệu ứng hover */
+.link-btn:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.6);
+  filter: brightness(1.1);
+}
+
+/* hiệu ứng bấm */
+.link-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+}
 </style>
 </head>
 
 <body>
 
-<!-- NÚT -->
-<div class="social-bar">
-  <div id="fb-btn" class="social-btn">
+<div class="links">
+  <!-- Facebook -->
+  <a class="link-btn fb" href="https://facebook.com/tenfanpage" target="_blank">
     <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg">
     Facebook
-  </div>
-  <div id="tt-btn" class="social-btn">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/TikTok_logo.svg">
+  </a>
+
+  <!-- TikTok (LOGO FULL MÀU) -->
+  <a class="link-btn tt" href="https://tiktok.com/@tentiktok" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/TikTok_logo.svg">
     TikTok
-  </div>
+  </a>
 </div>
-
-<!-- POPUP FB -->
-<div id="fb-popup" class="popup">
-  <div class="popup-box">
-    <div class="popup-header">
-      Fanpage Facebook
-      <span class="close" onclick="closeAll()">✕</span>
-    </div>
-    <a class="fb-link" href="https://facebook.com/tenfanpage" target="_blank">
-      https://facebook.com/tenfanpage
-    </a>
-  </div>
-</div>
-
-<!-- POPUP TT -->
-<div id="tt-popup" class="popup">
-  <div class="popup-box">
-    <div class="popup-header">
-      TikTok CLB
-      <span class="close" onclick="closeAll()">✕</span>
-    </div>
-    <a class="tt-link" href="https://tiktok.com/@tentiktok" target="_blank">
-      https://tiktok.com/@tentiktok
-    </a>
-  </div>
-</div>
-
-<script>
-const fbBtn = document.getElementById("fb-btn");
-const ttBtn = document.getElementById("tt-btn");
-const fbPopup = document.getElementById("fb-popup");
-const ttPopup = document.getElementById("tt-popup");
-
-fbBtn.onclick = () => {
-  fbPopup.style.display = "flex";
-  ttPopup.style.display = "none";
-};
-
-ttBtn.onclick = () => {
-  ttPopup.style.display = "flex";
-  fbPopup.style.display = "none";
-};
-
-function closeAll() {
-  fbPopup.style.display = "none";
-  ttPopup.style.display = "none";
-}
-</script>
 
 </body>
 </html>
