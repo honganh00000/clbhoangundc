@@ -166,17 +166,17 @@
 
         // Hàm xác nhận quyền admin (giả lập "chỉ mình tôi")
         function askAdmin() {
-            const pass = prompt("Nhập mã admin để sửa link:");
-            if (pass === "123") { // Thay 123 bằng mật khẩu của ông
+            const pass = prompt("mời con chó Hồng Anh nhập mã admin để sửa link:");
+            if (pass === "nhingu") { // Thay 123 bằng mật khẩu của ông
                 isAdmin = true;
                 openEditOptions();
             } else {
-                alert("Sai mã rồi ông cháu ơi!");
+                alert("Sai mã rồi thằng Hồng Anh ngu ơi!");
             }
         }
 
         function openEditOptions() {
-            const platform = prompt("Ông muốn sửa link nào? (Gõ 'fb' hoặc 'tt')");
+            const platform = prompt("mày muốn sửa link nào? (Gõ 'fb' hoặc 'tt')");
             if (platform === 'fb') {
                 showModal('facebook');
             } else if (platform === 'tt') {
@@ -206,4 +206,5 @@
     </script>
 </body>
 </html>
+
 
