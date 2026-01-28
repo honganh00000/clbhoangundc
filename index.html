@@ -41,6 +41,88 @@ body {
 /* FACEBOOK */
 #fb-btn {
   bottom: 90px;
-  background: #
+  background: #1877f2;
+}
 
-  
+/* TIKTOK */
+#tt-btn {
+  bottom: 30px;
+  background: linear-gradient(135deg,#25F4EE,#FE2C55);
+}
+
+/* POPUP */
+.popup {
+  position: fixed;
+  left: 20px;
+  bottom: 150px;
+  background: white;
+  padding: 12px;
+  border-radius: 10px;
+  width: 260px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  display: none;
+}
+
+.popup input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- FACEBOOK -->
+<div id="fb-btn" class="social-btn" onclick="openLink('fb')"
+     oncontextmenu="editLink(event,'fb')">
+  📘 Facebook
+</div>
+
+<!-- TIKTOK -->
+<div id="tt-btn" class="social-btn" onclick="openLink('tt')"
+     oncontextmenu="editLink(event,'tt')">
+  🎵 TikTok
+</div>
+
+<!-- POPUP NHẬP LINK -->
+<div id="popup" class="popup">
+  <input id="linkInput" placeholder="Dán link vào đây">
+</div>
+
+<script>
+let currentType = "";
+
+function openLink(type) {
+  const link = localStorage.getItem(type);
+  if (link) {
+    window.open(link, "_blank");
+  } else {
+    alert("Chưa có link");
+  }
+}
+
+function editLink(e, type) {
+  e.preventDefault(); // chặn menu chuột phải
+  currentType = type;
+  const popup = document.getElementById("popup");
+  const input = document.getElementById("linkInput");
+
+  input.value = localStorage.getItem(type) || "";
+  popup.style.display = "block";
+
+  input.oninput = () => {
+    localStorage.setItem(type, input.value);
+  };
+}
+
+// bấm ra ngoài thì tắt popup
+document.body.onclick = (e) => {
+  if (!e.target.closest(".popup") && !e.target.classList.contains("social-btn")) {
+    document.getElementById("popup").style.display = "none";
+  }
+};
+</script>
+
+</body>
+</html>
