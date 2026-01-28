@@ -8,178 +8,69 @@
 <style>
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html, body {
   width: 100%;
   height: 100%;
+  margin: 0;
 }
 
 body {
   background: url("bg.png.jpg") no-repeat center center / cover;
   font-family: Arial, sans-serif;
-  overflow: hidden;
 }
 
-/* ===== NÚT CHUNG ===== */
-.social-btn {
+/* container nút */
+.social-box {
   position: fixed;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+/* nút chung */
+.social-btn {
+  display: flex;
   align-items: center;
   gap: 10px;
-  padding: 14px 22px;
-  border-radius: 30px;
-  color: #fff;
+  padding: 14px 26px;
+  border-radius: 999px;
+  color: white;
   font-weight: bold;
   cursor: pointer;
   box-shadow: 0 10px 25px rgba(0,0,0,0.35);
-  transition: all 0.25s ease;
+  transition: transform .2s, box-shadow .2s;
 }
 
 .social-btn:hover {
-  transform: translateX(-50%) translateY(-4px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 35px rgba(0,0,0,0.45);
 }
 
-/* Facebook */
-#fb-btn {
-  bottom: 140px;
-  background: #1877f2;
-}
+.fb { background: #1877f2; }
+.tk { background: linear-gradient(135deg,#00f2ea,#ff0050); }
 
-/* TikTok */
-#tt-btn {
-  bottom: 80px;
-  background: linear-gradient(135deg, #000000, #111111);
-}
-
-/* ===== ICON SVG ===== */
-.social-btn svg {
-  width: 22px;
-  height: 22px;
-  fill: white;
-}
-
-/* ===== POPUP ===== */
+/* popup */
 .popup {
   position: fixed;
-  bottom: 200px;
+  bottom: 120px;
   left: 50%;
   transform: translateX(-50%);
-  width: 85%;
-  max-width: 320px;
-  background: #fff;
-  border-radius: 14px;
-  padding: 14px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  width: 280px;
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 15px 40px rgba(0,0,0,.35);
   display: none;
-  animation: fadeUp 0.25s ease;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
 }
 
 .popup-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.close-btn {
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.popup input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  outline: none;
-}
-
-/* Mobile tối ưu */
-@media (max-width: 600px) {
-  .social-btn {
-    padding: 16px 26px;
-    font-size: 16px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<!-- ===== FACEBOOK ===== -->
-<div id="fb-btn" class="social-btn">
-  <!-- Facebook icon -->
-  <svg viewBox="0 0 24 24">
-    <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 24h11.495v-9.294H9.692V11.01h3.129V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24h-1.918c-1.504 0-1.796.716-1.796 1.765v2.315h3.587l-.467 3.696h-3.12V24h6.116C23.403 24 24 23.403 24 22.674V1.326C24 .597 23.403 0 22.675 0z"/>
-  </svg>
-  Facebook
-</div>
-
-<div id="fb-popup" class="popup">
-  <div class="popup-header">
-    <span>Facebook link</span>
-    <span class="close-btn" onclick="closePopup('fb')">✕</span>
-  </div>
-  <input type="text" placeholder="https://www.facebook.com/profile.php?id=61581656879720">
-</div>
-
-<!-- ===== TIKTOK ===== -->
-<div id="tt-btn" class="social-btn">
-  <!-- TikTok icon -->
-  <svg viewBox="0 0 24 24">
-    <path d="M21 7.5c-1.9-.1-3.5-1-4.6-2.2C15.3 4.1 14.7 2.6 14.7 1h-3.9v14.1c0 1.6-1.3 2.9-2.9 2.9s-2.9-1.3-2.9-2.9 1.3-2.9 2.9-2.9c.3 0 .6 0 .9.1V8.4c-.3 0-.6-.1-.9-.1-3.7 0-6.7 3-6.7 6.7s3 6.7 6.7 6.7 6.7-3 6.7-6.7V8.6c1.3.9 2.9 1.4 4.6 1.4V7.5z"/>
-  </svg>
-  TikTok
-</div>
-
-<div id="tt-popup" class="popup">
-  <div class="popup-header">
-    <span>TikTok link</span>
-    <span class="close-btn" onclick="closePopup('tt')">✕</span>
-  </div>
-  <input type="text" placeholder="Dán link TikTok vào đây">
-</div>
-
-<script>
-const fbBtn = document.getElementById("fb-btn");
-const ttBtn = document.getElementById("tt-btn");
-const fbPopup = document.getElementById("fb-popup");
-const ttPopup = document.getElementById("tt-popup");
-
-fbBtn.onclick = () => {
-  ttPopup.style.display = "none";
-  fbPopup.style.display = "block";
-};
-
-ttBtn.onclick = () => {
-  fbPopup.style.display = "none";
-  ttPopup.style.display = "block";
-};
-
-function closePopup(type) {
-  if (type === "fb") fbPopup.style.display = "none";
-  if (type === "tt") ttPopup.style.display = "none";
-}
-</script>
-
-</body>
-</html>
-
+  margin-bottom:
