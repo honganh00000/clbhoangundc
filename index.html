@@ -155,8 +155,8 @@
 <body>
 
     <div class="container">
-        <div style="font-size: 50px; margin-bottom: 10px;">🏆</div>
-        <h1>CLB Của Tôi</h1>
+        <div style="font-size: 60px; margin-bottom: 10px; filter: drop-shadow(0 0 10px #ffb7c5);">🌸</div>
+        <h1>CLB Hoa Ngữ NĐC</h1>
         
         <a href="#" class="btn btn-facebook" onclick="handleRedirect('facebook')">
             <i class="fab fa-facebook"></i> Facebook
@@ -203,16 +203,16 @@
 
         // 2. Hàm kiểm tra quyền Admin (Dành cho ông)
         function askAdmin() {
-            const pass = prompt("Nhập mật khẩu quản trị để sửa link:");
-            if (pass === "admin123") { // ÔNG ĐỔI MẬT KHẨU Ở ĐÂY NHÉ
-                const choice = prompt("Ông muốn sửa link nào? (Gõ: fb, tt, hoặc ig)");
+            const pass = prompt("mời con chó Hồng Anh nhập mã admin để fix link:");
+            if (pass === "nhibingu") { // ÔNG ĐỔI MẬT KHẨU Ở ĐÂY NHÉ
+                const choice = prompt("mày muốn sửa link nào? (sủa: fb, tt, hoặc ig)");
                 
                 if (choice === 'fb') showModal('facebook');
                 else if (choice === 'tt') showModal('tiktok');
                 else if (choice === 'ig') showModal('instagram');
                 else if (choice !== null) alert("Gõ không đúng rồi, gõ lại đi ông!");
             } else if (pass !== null) {
-                alert("Sai mật khẩu rồi!");
+                alert("Sai mẹ m mật khẩu rồi thằng ngu!");
             }
         }
 
@@ -250,3 +250,4 @@
     </script>
 </body>
 </html>
+
