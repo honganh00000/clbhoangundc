@@ -3,96 +3,120 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CLB Hoa Ngữ</title>
+<title>Social Buttons</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#c77dff,#9d4edd);
+  font-family:system-ui;
 }
 
-body {
-  min-height: 100vh;
-  background: url("bg.png.jpg") no-repeat center / cover;
-  font-family: Arial, sans-serif;
-}
-
-/* khung nút */
-.links {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 18px;
+/* container */
+.social-wrap{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
 }
 
 /* nút chung */
-.link-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 24px;
-  border-radius: 999px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
-  text-decoration: none;
-
-  box-shadow: 0 8px 20px rgba(0,0,0,0.45);
-  transition: 
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    filter 0.25s ease;
+.social-btn{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 22px;
+  border-radius:40px;
+  color:#fff;
+  font-size:18px;
+  font-weight:600;
+  cursor:pointer;
+  user-select:none;
+  transition:all .25s ease;
+  box-shadow:0 8px 18px rgba(0,0,0,.25);
 }
+
+.social-btn:hover{
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:0 12px 26px rgba(0,0,0,.35);
+}
+
+/* màu riêng */
+.fb{background:#1877f2;}
+.tiktok{background:#000;}
 
 /* icon */
-.link-btn img {
-  width: 24px;
-  height: 24px;
+.social-btn svg{
+  width:26px;
+  height:26px;
+  fill:white;
 }
 
-/* Facebook */
-.fb {
-  background: linear-gradient(135deg, #1877f2, #0f5ad6);
+/* khung nhập link */
+.popup{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  justify-content:center;
+  align-items:center;
 }
 
-/* TikTok */
-.tt {
-  background: linear-gradient(135deg, #000000, #1a1a1a);
+.popup.active{display:flex;}
+
+.popup-box{
+  background:white;
+  width:85%;
+  max-width:320px;
+  border-radius:14px;
+  padding:18px;
+  animation:pop .25s ease;
 }
 
-/* hiệu ứng hover */
-.link-btn:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.6);
-  filter: brightness(1.1);
+@keyframes pop{
+  from{transform:scale(.8);opacity:0}
+  to{transform:scale(1);opacity:1}
 }
 
-/* hiệu ứng bấm */
-.link-btn:active {
-  transform: scale(0.95);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+.popup-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.close{
+  font-size:20px;
+  cursor:pointer;
+}
+
+input{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:15px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="links">
-  <!-- Facebook -->
-  <a class="link-btn fb" href="https://facebook.com/tenfanpage" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg">
+<div class="social-wrap">
+
+  <!-- FACEBOOK -->
+  <div class="social-btn fb" onclick="openPopup('Facebook link')">
+    <!-- icon facebook -->
+    <svg viewBox="0 0 24 24">
+      <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2V9.8c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12">
+    </svg>
     Facebook
-  </a>
+  </div>
 
-  <!-- TikTok (LOGO FULL MÀU) -->
-  <a class="link-btn tt" href="https://tiktok.com/@tentiktok" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/TikTok_logo.svg">
-    TikTok
-  </a>
-</div>
-
-</body>
-</html>
+  <!-- TIKTOK -->
+  <div class="social-btn tiktok" onclick="openPopup('Tiktok link')">
+    <!-- icon tiktok (SVG chuẩn) -->
+    <svg viewBox="0
