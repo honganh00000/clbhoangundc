@@ -22,7 +22,7 @@ body {
   position: fixed;
   left: 20px;
   padding: 14px 22px;
-  border-radius: 30px;
+  border-radius: 999px;
   color: white;
   font-size: 16px;
   font-weight: bold;
@@ -30,37 +30,56 @@ body {
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  user-select: none;
   transition: transform 0.2s;
 }
 
-.social-btn:hover {
-  transform: scale(1.05);
+.social-btn:active {
+  transform: scale(0.95);
 }
 
 /* FACEBOOK */
 #fb-btn {
-  bottom: 90px;
+  bottom: 100px;
   background: #1877f2;
 }
 
 /* TIKTOK */
 #tt-btn {
-  bottom: 30px;
-  background: linear-gradient(135deg,#25F4EE,#FE2C55);
+  bottom: 40px;
+  background: linear-gradient(135deg, #25F4EE, #FE2C55);
+}
+
+/* ICON */
+.icon {
+  font-size: 22px;
 }
 
 /* POPUP */
 .popup {
   position: fixed;
   left: 20px;
-  bottom: 150px;
-  background: white;
-  padding: 12px;
-  border-radius: 10px;
+  bottom: 170px;
   width: 260px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
   display: none;
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.close {
+  font-size: 18px;
+  cursor: pointer;
 }
 
 .popup input {
@@ -74,54 +93,64 @@ body {
 <body>
 
 <!-- FACEBOOK -->
-<div id="fb-btn" class="social-btn" onclick="openLink('fb')"
-     oncontextmenu="editLink(event,'fb')">
-  📘 Facebook
+<div id="fb-btn" class="social-btn">
+  <span class="icon">📘</span> Facebook
 </div>
 
 <!-- TIKTOK -->
-<div id="tt-btn" class="social-btn" onclick="openLink('tt')"
-     oncontextmenu="editLink(event,'tt')">
-  🎵 TikTok
+<div id="tt-btn" class="social-btn">
+  <span class="icon">🎵</span> TikTok
 </div>
 
-<!-- POPUP NHẬP LINK -->
+<!-- POPUP -->
 <div id="popup" class="popup">
+  <div class="popup-header">
+    <span>Nhập link</span>
+    <span class="close" onclick="closePopup()">✕</span>
+  </div>
   <input id="linkInput" placeholder="Dán link vào đây">
 </div>
 
 <script>
+let holdTimer;
 let currentType = "";
 
 function openLink(type) {
   const link = localStorage.getItem(type);
-  if (link) {
-    window.open(link, "_blank");
-  } else {
-    alert("Chưa có link");
-  }
+  if (link) window.open(link, "_blank");
 }
 
-function editLink(e, type) {
-  e.preventDefault(); // chặn menu chuột phải
-  currentType = type;
-  const popup = document.getElementById("popup");
-  const input = document.getElementById("linkInput");
+function startHold(type) {
+  holdTimer = setTimeout(() => {
+    currentType = type;
+    const popup = document.getElementById("popup");
+    const input = document.getElementById("linkInput");
+    input.value = localStorage.getItem(type) || "";
+    popup.style.display = "block";
 
-  input.value = localStorage.getItem(type) || "";
-  popup.style.display = "block";
-
-  input.oninput = () => {
-    localStorage.setItem(type, input.value);
-  };
+    input.oninput = () => {
+      localStorage.setItem(type, input.value);
+    };
+  }, 2000); // nhấn giữ 2s
 }
 
-// bấm ra ngoài thì tắt popup
-document.body.onclick = (e) => {
-  if (!e.target.closest(".popup") && !e.target.classList.contains("social-btn")) {
-    document.getElementById("popup").style.display = "none";
-  }
-};
+function cancelHold() {
+  clearTimeout(holdTimer);
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+
+/* GÁN SỰ KIỆN */
+const fb = document.getElementById("fb-btn");
+const tt = document.getElementById("tt-btn");
+
+fb.addEventListener("touchstart", () => startHold("fb"));
+fb.addEventListener("touchend", () => { cancelHold(); openLink("fb"); });
+
+tt.addEventListener("touchstart", () => startHold("tt"));
+tt.addEventListener("touchend", () => { cancelHold(); openLink("tt"); });
 </script>
 
 </body>
