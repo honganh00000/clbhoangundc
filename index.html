@@ -1,135 +1,208 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CLB Hoa Ngữ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLB Thông Tin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<style>
-html, body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  font-family: Arial, sans-serif;
-}
+        body {
+            /* Hình nền của ông */
+            background: url('bg.png.jpg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
 
-body {
-  background: url("bg.png.jpg") center / cover no-repeat;
-}
+        .container {
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
 
-/* NÚT */
-.social-btn {
-  position: fixed;
-  left: 20px;
-  bottom: 40px;
-  padding: 16px 24px;
-  border-radius: 999px;
-  background: #1877f2;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
-  cursor: pointer;
-}
+        h1 { margin-bottom: 20px; font-size: 1.5rem; }
 
-/* POPUP */
-.popup {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
-  background: white;
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-  display: none;
-}
+        /* Style cho nút */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.2s;
+        }
 
-.popup-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-}
+        .btn:active { transform: scale(0.95); }
+        .btn i { margin-right: 10px; font-size: 22px; }
 
-.close {
-  cursor: pointer;
-  font-size: 20px;
-}
+        .btn-facebook { background-color: #1877F2; }
+        .btn-tiktok { background-color: #000000; border: 1px solid #fe2c55; }
 
-.popup input {
-  width: 100%;
-  margin-top: 12px;
-  padding: 10px;
-  font-size: 14px;
-}
-</style>
+        /* Modal (Khung dán link) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            color: #333;
+            padding: 20px;
+            border-radius: 15px;
+            width: 85%;
+            max-width: 350px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .save-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* Nút ẩn để mở mode chỉnh sửa */
+        #admin-trigger {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            opacity: 0.1; /* Rất mờ để người ngoài ko biết */
+            color: white;
+            cursor: pointer;
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- NÚT FACEBOOK -->
-<div id="fb-btn" class="social-btn">
-  📘 Facebook
-</div>
+    <div class="container">
+        <img src="https://via.placeholder.com/80" style="border-radius: 50%; margin-bottom: 15px;" alt="Logo CLB">
+        <h1>Tên Câu Lạc Bộ</h1>
+        
+        <a href="#" class="btn btn-facebook" onclick="handleRedirect('facebook')">
+            <i class="fab fa-facebook"></i> Facebook
+        </a>
+        <a href="#" class="btn btn-tiktok" onclick="handleRedirect('tiktok')">
+            <i class="fab fa-tiktok"></i> TikTok
+        </a>
+    </div>
 
-<!-- POPUP -->
-<div id="popup" class="popup">
-  <div class="popup-header">
-    <span>Facebook link</span>
-    <span class="close" onclick="closePopup()">✕</span>
-  </div>
-  <input id="fbInput" placeholder="Dán link Facebook">
-</div>
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3>Cập nhật Link</h3>
+            <p id="platformName" style="font-weight: bold; color: #1877F2;"></p>
+            <input type="text" id="linkInput" placeholder="Dán link vào đây...">
+            <button class="save-btn" onclick="saveLink()">Lưu thay đổi</button>
+        </div>
+    </div>
 
-<script>
-const fbBtn = document.getElementById("fb-btn");
-const popup = document.getElementById("popup");
-const input = document.getElementById("fbInput");
+    <div id="admin-trigger" onclick="askAdmin()">
+        <i class="fas fa-cog"></i>
+    </div>
 
-const PASSWORD = "1234"; // ← m đổi mật khẩu ở đây
+    <script>
+        let currentPlatform = '';
+        let isAdmin = false;
 
-// load link
-input.value = localStorage.getItem("fbLink") || "";
-input.disabled = true;
+        // Mặc định nếu chưa có link thì nó nhảy về trang chủ
+        const defaultLinks = {
+            facebook: 'https://facebook.com',
+            tiktok: 'https://tiktok.com'
+        };
 
-// bấm nút
-fbBtn.onclick = () => {
-  popup.style.display = "block";
+        // Hàm xử lý khi bấm nút chính
+        function handleRedirect(platform) {
+            const savedLink = localStorage.getItem(platform) || defaultLinks[platform];
+            window.location.href = savedLink;
+        }
 
-  // nếu có link rồi → người khác bấm sẽ nhảy luôn
-  const link = localStorage.getItem("fbLink");
-  if (link) {
-    setTimeout(() => {
-      window.open(link, "_blank");
-    }, 300);
-  }
-};
+        // Hàm xác nhận quyền admin (giả lập "chỉ mình tôi")
+        function askAdmin() {
+            const pass = prompt("Nhập mã admin để sửa link:");
+            if (pass === "123") { // Thay 123 bằng mật khẩu của ông
+                isAdmin = true;
+                openEditOptions();
+            } else {
+                alert("Sai mã rồi ông cháu ơi!");
+            }
+        }
 
-// hỏi mật khẩu để sửa
-input.onclick = () => {
-  const pass = prompt("Nhập mật khẩu:");
-  if (pass === PASSWORD) {
-    input.disabled = false;
-    input.focus();
-  }
-};
+        function openEditOptions() {
+            const platform = prompt("Ông muốn sửa link nào? (Gõ 'fb' hoặc 'tt')");
+            if (platform === 'fb') {
+                showModal('facebook');
+            } else if (platform === 'tt') {
+                showModal('tiktok');
+            }
+        }
 
-// lưu link
-input.oninput = () => {
-  localStorage.setItem("fbLink", input.value);
-};
+        function showModal(platform) {
+            currentPlatform = platform;
+            document.getElementById('platformName').innerText = "Đang sửa: " + platform.toUpperCase();
+            document.getElementById('linkInput').value = localStorage.getItem(platform) || defaultLinks[platform];
+            document.getElementById('editModal').style.display = 'flex';
+        }
 
-// đóng popup
-function closePopup() {
-  popup.style.display = "none";
-  input.disabled = true;
-}
-</script>
+        function closeModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
 
+        function saveLink() {
+            const newLink = document.getElementById('linkInput').value;
+            if (newLink) {
+                localStorage.setItem(currentPlatform, newLink);
+                alert("Đã lưu link " + currentPlatform + " thành công!");
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
