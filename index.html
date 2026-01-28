@@ -22,10 +22,10 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* ===== KHỐI NÚT (mobile ưu tiên) ===== */
+/* ===== KHỐI NÚT (ưu tiên mobile) ===== */
 .social-wrapper {
   position: fixed;
-  bottom: 20px;
+  bottom: 18px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -34,21 +34,28 @@ body {
 }
 
 .social-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
   padding: 16px 22px;
   border-radius: 999px;
   color: white;
   font-size: 16px;
   font-weight: bold;
+
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.35);
   transition: transform 0.2s;
 }
 
 .social-btn:active {
   transform: scale(0.95);
+}
+
+.social-btn img {
+  width: 26px;
+  height: 26px;
 }
 
 /* Facebook */
@@ -94,97 +101,5 @@ body {
   cursor: pointer;
 }
 
-/* Link */
-.popup a {
-  display: block;
-  padding: 14px;
-  background: #f2f2f2;
-  border-radius: 8px;
-  text-decoration: none;
-  word-break: break-all;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.fb-link { color: #1877f2; }
-.tt-link { color: #000; }
-
-/* ===== PC thì nhỏ lại chút ===== */
-@media (min-width: 768px) {
-  .social-btn {
-    font-size: 15px;
-    padding: 14px 20px;
-  }
-
-  .popup-box {
-    max-width: 360px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<!-- ===== NÚT ===== -->
-<div class="social-wrapper">
-  <div id="fb-btn" class="social-btn">📘 Facebook</div>
-  <div id="tt-btn" class="social-btn">🎵 TikTok</div>
-</div>
-
-<!-- ===== POPUP FACEBOOK ===== -->
-<div id="fb-popup" class="popup">
-  <div class="popup-box">
-    <div class="popup-header">
-      <span>Fanpage Facebook</span>
-      <span class="close-btn" onclick="closePopup()">✕</span>
-    </div>
-
-    <!-- 🔴 MÀY SỬA LINK Ở ĐÂY -->
-    <a class="fb-link"
-       href="https://facebook.com/tenfanpage"
-       target="_blank">
-       https://facebook.com/tenfanpage
-    </a>
-  </div>
-</div>
-
-<!-- ===== POPUP TIKTOK ===== -->
-<div id="tt-popup" class="popup">
-  <div class="popup-box">
-    <div class="popup-header">
-      <span>TikTok CLB</span>
-      <span class="close-btn" onclick="closePopup()">✕</span>
-    </div>
-
-    <!-- 🔴 MÀY SỬA LINK Ở ĐÂY -->
-    <a class="tt-link"
-       href="https://tiktok.com/@tentiktok"
-       target="_blank">
-       https://tiktok.com/@tentiktok
-    </a>
-  </div>
-</div>
-
-<script>
-const fbBtn = document.getElementById("fb-btn");
-const ttBtn = document.getElementById("tt-btn");
-const fbPopup = document.getElementById("fb-popup");
-const ttPopup = document.getElementById("tt-popup");
-
-fbBtn.onclick = () => {
-  fbPopup.style.display = "flex";
-};
-
-ttBtn.onclick = () => {
-  ttPopup.style.display = "flex";
-};
-
-function closePopup() {
-  fbPopup.style.display = "none";
-  ttPopup.style.display = "none";
-}
-</script>
-
-</body>
-</html>
+/* Link hiển thị (chỉ xem + bấm) */
+.popup a
